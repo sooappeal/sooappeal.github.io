@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>travel</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="travel-container">
+    <header>
+        <div id="top-header" class="center">
+            <p>WELCOME PROJECT</p>
+        </div>
+        <div id="introduce-header" class="center">
+            <p>♣Travel♣</p>
+        </div>
+    </header>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="./index.html">MAIN</a></li>
+                <li><a href="./introduce.html">INTRODUCE</a></li>
+                <li><a href="./travel.html">TRAVEL</a></li>
+                <li><a href="./roadmap.html">ROADMAP</a></li>
+                <br><br>
+                <li><a href="./login.html">LOGIN</a></li>
+                <li><a href="./join.html">JOIN</a></li>
+                <li><a href="./memberlist.html">MEMBER</a></li>
+            </ul>
+        </nav>
+        <main>
+            <span id="travel-title">my travel album</span>
+            <section class="album">
+                <article class="slide">
+                    <div class="images">
+                        <img src="./img/japan1.jpg" alt="">
+                        <img src="./img/japan2.jpg" alt="">
+                        <img src="./img/japan3.jpg" alt="">
+                        <img src="./img/ny2.jpeg" alt="">
+                        <img src="./img/ny3.jpeg" alt="">
+                        <img src="./img/ny4.jpeg" alt="">
+                        <img src="./img/lv3.jpeg" alt="">
+                        <img src="./img/lv1.jpeg" alt="">
+                        <img src="./img/lv5.jpeg" alt="">
+                        <img src="./img/lv2.jpeg" alt="">
+                        <img src="./img/lv4.jpeg" alt="">
+                    </div>
+                </article>
+                <button class="prev">&#8249;</button>
+                <button class="next">&#8250;</button>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        let imgIdx = 0;
+        let pos = 0;
+        const IMG_WIDTH = 600;
+        const btnPrev = document.querySelector(".prev");
+        const btnNext = document.querySelector(".next");
+        const imgs = document.querySelector(".images");
+
+        const prev = () => {
+            if(imgIdx > 0){
+                btnNext.removeAttribute("disabled"); //속성제거 disabled, false는 없다!
+                pos += IMG_WIDTH;
+                imgs.style.transform = `translateX(${pos}px)`;
+                imgIdx = imgIdx - 1;
+            }
+            if(imgIdx == 0){
+                btnPrev.setAttribute('disabled', 'true'); //속성추가
+            }
+        }
+        const next = () => {
+            if(imgIdx < 10){
+                btnPrev.removeAttribute("disabled");
+                pos -= IMG_WIDTH;
+                imgs.style.transform = `translateX(${pos}px)`;
+                imgIdx = imgIdx + 1;
+            }
+            if(imgIdx == 10){
+                btnNext.setAttribute('disabled', 'true');
+            }
+        }
+
+        function init(){
+            btnPrev.setAttribute('disabled', 'true');
+            btnPrev.addEventListener("click", prev);
+            btnNext.addEventListener("click", next);
+        }
+
+        init();
+    </script>
+</body>
+</html>

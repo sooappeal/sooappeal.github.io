@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>login</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div id="container">
+    <header>
+        <div id="top-header" class="center">
+            <p>WELCOME PROJECT</p>
+        </div>
+        <div id="introduce-header" class="center">
+            <p>LOGIN</p>
+        </div>
+    </header>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="./index.html">MAIN</a></li>
+                <li><a href="./introduce.html">INTRODUCE</a></li>
+                <li><a href="./travel.html">TRAVEL</a></li>
+                <li><a href="./roadmap.html">ROADMAP</a></li>
+                <br><br>
+                <li><a href="./login.html">LOGIN</a></li>
+                <li><a href="./join.html">JOIN</a></li>
+                <li><a href="./memberlist.html">MEMBER</a></li>
+            </ul>
+        </nav>
+        <main>
+           <form action="javascript:loginMember();" id="login-frm">
+             <div id="login-div">
+                 <h3>ID</h3>
+                <input type="text" id="loginId"><br>
+                <h3>PW</h3>
+                <input type="password" id="loginPwd">
+                <button id="login-btn" >OK!</button>
+            </div>
+           </form>
+        </main>
+    </div>
+
+    <script>
+    const loginMember = (joinMems = JSON.parse(localStorage.getItem("joinMems"))) => {
+    if (!joinMems) return;
+
+        joinMems.map((joinMem, index)=>{
+            const {userId, pwd} = joinMem;
+
+            const loginId = document.querySelector("#loginId").value;  
+            const loginPwd = document.querySelector("#loginPwd").value;
+
+            if(userId === loginId && pwd === loginPwd){
+                alert(`${userId}님 환영합니다!`); 
+                window.location.href ="./index.html";
+                return true;
+            }
+            if(userId !== loginId){
+                alert('아이디를 잘못 입력하셨습니다.');
+                return false;  
+            }
+                    
+            if(pwd !== loginPwd){
+                alert('비밀번호를 다시 입력하세요.');
+                return false;
+            }
+            if(!userid && !pwd){
+                alert('없는 정보입니다.');
+                return false;
+            }
+        })
+
+    
+  };
+    </script>
+</body>
+</html>
